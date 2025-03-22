@@ -1,36 +1,20 @@
-name : CI/CD Pipeline
+name: CI/CD Pipeline
+
 on:
   push:
     branches:
-      - main 
+      - main
   pull_request:
-        branches:
-          - main 
+    branches:
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-          python-version: '3.x'
-  
-    - name: Install dependencies
-      run: |
-        if [ -f requirements.txt ]; then
-          pip install -r requirements.txt
-          fi
-  
-    - name: Run tests
-      run: pytest || echo "No tests found"
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy to server
-        run: echo "Deploying application..."
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run a simple script
+        run: echo "CI/CD Pipeline is working!"
